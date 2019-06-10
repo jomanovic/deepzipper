@@ -1,5 +1,5 @@
 ![](https://github.com/jomanovic/deepzipper/blob/master/display/logo.jpg)
-<h4 align="center">An intelligent video compression framework utilizing neural nets.</a>.</h4>
+<h4 align="center">An intelligent video compression framework utilizing neural nets</a></h4>
 
 <p align="center">
   <a href="#description">Description</a> •
