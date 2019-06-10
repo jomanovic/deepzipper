@@ -1,5 +1,5 @@
 ![](https://github.com/jomanovic/deepzipper/blob/master/display/logo.jpg)
-<h4 align="center">An intelligent video compression framework utilizing nerual nets.</a>.</h4>
+<h4 align="center">An intelligent video compression framework utilizing neural nets.</a>.</h4>
 
 <p align="center">
   <a href="#description">Description</a> •
@@ -12,7 +12,7 @@
 
 ## Description
 
-What's in a frame? In 450 B.C. the ancient Greek philosopher Zeno contemplated the nature of time and its infinite divisibility, is motion any different he wondered. Like motion, videos persist through time meaning that ontop of the regular 3 dimensions necessary to describe any image i.e. (HEIGHT, WIDTH, CHANNELS), videos require an additional 4th dimension i,e, (TIME, HEIGHT, WIDTH, CHANNELS). The aim of deepzipper is to leverage redundency in temporal information in order to effectively reduce (compress) video data to it's utmost limit while at the same time preserving image definition. 
+What's in a frame? In 450 B.C. the ancient Greek philosopher Zeno contemplated the nature of time and its infinite divisibility, is motion any different he wondered. Like motion, videos persist through time meaning that ontop of the regular 3 dimensions necessary to describe any image i.e. (HEIGHT, WIDTH, CHANNELS), videos require an additional 4th dimension i.e. (TIME, HEIGHT, WIDTH, CHANNELS). The aim of deepzipper is to leverage redundency in temporal information in order to effectively reduce (compress) video data to it's utmost limit while at the same time preserving image definition. 
 
 Video compression consists of two sub-tasks:
 
@@ -44,6 +44,8 @@ There are two different methods of frame interpolation:
 - Reconstruction which attemps to construct the original image from scratch
 
 ![](https://github.com/jomanovic/deepzipper/blob/master/display/interp.jpg)
+
+The first models of this type which I've experimented with is the [Convolutional LSTM](https://arxiv.org/abs/1506.04214). The basic idea is to transfer hidden states both forward and backwerd (in time) in order to inform compression and decompression. 
 
 - Residual which attemps to refine the scaled encoded image to achieve decompression
 
