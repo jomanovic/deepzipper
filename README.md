@@ -1,16 +1,28 @@
 ![](https://github.com/jomanovic/deepzipper/blob/master/display/logo.jpg)
+<h4 align="center">An intelligent video compression framework utilizing nerual nets.</a>.</h4>
 
-## What is it?
+<p align="center">
+  <a href="#description">Description</a> •
+  <a href="#pipeline">Pipeline</a> •
+  <a href="#how-does-it-work">How it works</a> •
+  <a href="#prerequisites">Required</a> •
+  <a href="#results">Results</a> •
+  <a href="#license">License</a>
+</p>
 
-deepzipper is an intelligent video compression framework utilizing nerual nets. It has two main components:
+## Description
 
-- Frame Interpolation
-- Colorization
+What's in a frame? In 450 B.C. the ancient Greek philosopher Zeno contemplated the nature of time and its infinite divisibility, is motion any different he wondered. Like motion, videos persist through time meaning that ontop of the regular 3 dimensions necessary to describe any image i.e. (HEIGHT, WIDTH, CHANNELS), videos require an additional 4th dimension i,e, (TIME, HEIGHT, WIDTH, CHANNELS). The aim of deepzipper is to leverage redundency in temporal information in order to effectively reduce (compress) video data to it's utmost limit while at the same time preserving image definition. 
 
-## Before I show you my zipper, here is my pipeline:
+Video compression consists of two sub-tasks:
+
+- <a href="#frame-interpolation">Frame interpolation</a> 
+- <a href="#colorization">Colorization</a> 
+
+## Pipeline
 ![](https://github.com/jomanovic/deepzipper/blob/master/display/pipes.jpg)
 
-## How does it work?
+## How does it work
 
 The model works as follows:
 
@@ -25,7 +37,7 @@ The model works as follows:
   - Colorize images with Colorization model (decompression by a factor of 3)
   - Compose series of frames into a video [FFmpeg](https://ffmpeg.org/)
 
-## Frame interpolation:
+## Frame interpolation
 
 There are two different methods of frame interpolation:
 
@@ -37,7 +49,7 @@ There are two different methods of frame interpolation:
 
 ![](https://github.com/jomanovic/deepzipper/blob/master/display/residual.png)
 
-## Colorization:
+## Colorization
 
 ![](https://github.com/jomanovic/deepzipper/blob/master/display/colorization.jpg)
 
@@ -48,9 +60,13 @@ There are two different methods of frame interpolation:
 - [Pandas 0.24.2](https://pandas.pydata.org/pandas-docs/stable/install.html#) 0.24.2
 - [Scikit-Learn 0.21.2](https://scikit-learn.org/stable/index.html) 0.21.2
 - [Matplotlib](https://matplotlib.org/) 3.1.0
+- [FFmpeg](https://ffmpeg.org/)
 
 ## Results:
 
 Here are some of the outputs obtained by using the models mentioned above:
 
 ![Mickey Mouse "Orphans Benefit" 1941](https://github.com/jomanovic/deepzipper/blob/master/display/decompressed.gif)
+
+## License
+MIT
