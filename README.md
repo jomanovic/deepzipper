@@ -43,7 +43,7 @@ There are two different methods of frame interpolation:
 
 - Reconstruction which attemps to construct the original image from scratch
 
-![](https://github.com/jomanovic/deepzipper/blob/master/display/interpolation.jpg)
+![](https://github.com/jomanovic/deepzipper/blob/master/display/interp.jpg)
 
 - Residual which attemps to refine the scaled encoded image to achieve decompression
 
@@ -51,7 +51,7 @@ There are two different methods of frame interpolation:
 
 ## Colorization
 
-![](https://github.com/jomanovic/deepzipper/blob/master/display/colorization.jpg)
+![](https://github.com/jomanovic/deepzipper/blob/master/display/color.jpg)
 
 ### Prerequisites
 
