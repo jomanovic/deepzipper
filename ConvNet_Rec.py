@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Colorization models for deepzipper
+
 Author: Jasmin Omanovic
 """
 
@@ -14,10 +15,11 @@ import os
 
 # LOAD AND PREPROCESS DATA
 
-image_paths = [os.path.join('train_images', image_name) for image_name in os.listdir('train_images')]
+image_folder = 'train_images'
+image_paths = [os.path.join('train_images', image_name) for image_name in os.listdir(image_folder)]
 n_paths = len(image_paths)
-batch_size = 3*32
-buffer_size = 300*32
+batch_size = 32
+buffer_size = 1000
 
 AUTOTUNE = tf.data.experimental.AUTOTUNE
 train_generator = tf.data.Dataset.from_tensor_slices(image_paths[:int(0.8*n_paths)])
@@ -31,7 +33,31 @@ test_generator = test_generator.batch(batch_size)
 test_generator = test_generator.prefetch(buffer_size=AUTOTUNE)
 
 
-# DEFINE MODEL
+# DEFINE MODELS
+
+# BASELINE
+
+def ConvNet():
+    model = Sequential()
+    model.add(InputLayer(input_shape=(32, 32, 1)))
+    model.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
+    model.add(Conv2D(64, (3, 3), activation='relu', padding='same', strides=2))
+    model.add(Conv2D(128, (3, 3), activation='relu', padding='same'))
+    model.add(Conv2D(128, (3, 3), activation='relu', padding='same', strides=2))
+    model.add(Conv2D(256, (3, 3), activation='relu', padding='same'))
+    model.add(Conv2D(256, (3, 3), activation='relu', padding='same', strides=2))
+    model.add(Conv2D(512, (3, 3), activation='relu', padding='same'))
+    model.add(Conv2D(256, (3, 3), activation='relu', padding='same'))
+    model.add(Conv2D(128, (3, 3), activation='relu', padding='same'))
+    model.add(UpSampling2D((2, 2)))
+    model.add(Conv2D(64, (3, 3), activation='relu', padding='same'))
+    model.add(UpSampling2D((2, 2)))
+    model.add(Conv2D(32, (3, 3), activation='relu', padding='same'))
+    model.add(UpSampling2D((2, 2)))
+    model.add(Conv2D(2, (3, 3), activation='tanh', padding='same'))
+    model.compile(optimizer='adam', loss='mse')
+    
+    return model
 
 class ConvNet_Rec(tf.keras.Model):
     """
