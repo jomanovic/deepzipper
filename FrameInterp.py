@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Frame intrpolation models for deepzipper
+
 Author: Jasmin Omanovic
 """
 
@@ -15,7 +16,8 @@ import os
 
 # LOAD AND PREPROCESS DATA
 
-sorted_names = sorted(os.listdir('train_images'),key=lambda x: x.split('.')[0])
+image_folder = 'train_images'
+sorted_names = sorted(os.listdir(image_folder),key=lambda x: x.split('.')[0])
 single_paths = [os.path.join('train_images', image_name) for image_name in sorted_names]
 seq_paths = [[single_paths[i],single_paths[i+1],single_paths[i+2]] for i in range(len(single_paths)-2)]
 n_paths = len(seq_paths)
@@ -38,7 +40,7 @@ test_generator = test_generator.prefetch(buffer_size=AUTOTUNE)
 
 class LSTMConvNet_v1(tf.keras.Model):
     """
-    LSTM Convolutional Auto-Encoder (Reconstruction):
+    LSTM Convolutional Auto-Encoder:
         Encoder: LSTM + ConvLSTM2D
         Decoder: UpSampling2D + ConvLSTM2D
     """
@@ -77,7 +79,7 @@ class LSTMConvNet_v1(tf.keras.Model):
 
 class LSTMConvNet_v2(tf.keras.Model):
     """
-    LSTM Convolutional Auto-Encoder (Reconstruction):
+    LSTM Convolutional Auto-Encoder:
         Encoder: LSTM + ConvLSTM2D
         Decoder: Depth2Space (Pixel Shuffle) + ConvLSTM2D
     """  
@@ -119,6 +121,7 @@ class LSTMConvNet_v2(tf.keras.Model):
 optimizer = tf.keras.optimizers.Adam(1e-3)
 
 def compute_loss(model, images):
+    # We use img_t-1, img_t and img_t+1 to predict img_t
     middle_image = images[:,1:2,:,:,:]
     pred_image = model(images)[:,1:2,:,:,:]
     return tf.keras.losses.mean_absolute_error(pred_image, middle_image)
@@ -170,4 +173,5 @@ def train(model, train_generator, test_generator, epochs=10, sample=True):
     return model
 
 if __name__ == '__main__':
+    print('Training LSTMConvNet_v1...')
     model = train(LSTMConvNet_v1(),train_generator, test_generator)
