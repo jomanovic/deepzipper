@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Colorization models for deepzipper
+
 Author: Jasmin Omanovic
 """
 
@@ -14,10 +15,11 @@ import os
 
 # LOAD AND PREPROCESS DATA
 
-image_paths = [os.path.join('train_images', image_name) for image_name in os.listdir('train_images')]
+image_folder = 'train_images'
+image_paths = [os.path.join('train_images', image_name) for image_name in os.listdir(image_folder)]
 n_paths = len(image_paths)
-batch_size = 3*32
-buffer_size = 300*32
+batch_size = 32
+buffer_size = 1000
 
 AUTOTUNE = tf.data.experimental.AUTOTUNE
 train_generator = tf.data.Dataset.from_tensor_slices(image_paths[:int(0.8*n_paths)])
@@ -33,9 +35,12 @@ test_generator = test_generator.prefetch(buffer_size=AUTOTUNE)
 
 class ConvNet_Res(tf.keras.Model):
     """
-    Convolutional Auto-Encoder (Residual):
-        Encoder: Conv2D + BatchNorm
-        Decoder: Interpolation (Resize) + Conv2D + BatchNorm
+    Based on:
+    End-to-end Optimized Image Compression
+    by Johannes Ballé, Valero Laparra, Eero P. Simoncelli
+    
+    Encoder: Conv2D + BatchNorm
+    Decoder: Interpolation (Resize) + Conv2D + BatchNorm
     """
     def __init__(self, input_shape=(32, 32, 1)):
         super(ConvNet_Res, self).__init__()
@@ -66,7 +71,7 @@ class ConvNet_Res(tf.keras.Model):
             tf.keras.layers.BatchNormalization(),
             tf.keras.layers.Conv2D(filters=64, kernel_size=3, strides=(1,1), activation='relu', padding='same'),
             tf.keras.layers.BatchNormalization(),
-            tf.keras.layers.Conv2DTranspose(filters=3, kernel_size=3, strides=(1,1), padding='same')
+            tf.keras.layers.Conv2DTranspose(filters=1, kernel_size=3, strides=(1,1), padding='same')
         ])
         
     def call(self, image):
