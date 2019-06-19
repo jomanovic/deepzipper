@@ -12,7 +12,7 @@
 
 ## Description
 
-What's in a frame? In 450 B.C. the ancient Greek philosopher Zeno contemplated the nature of time and its infinite divisibility, is motion any different he wondered. Like motion, videos persist through time meaning that ontop of the regular 3 dimensions necessary to describe any image i.e. (HEIGHT, WIDTH, CHANNELS), videos require an additional 4th dimension i.e. (TIME, HEIGHT, WIDTH, CHANNELS). The aim of deepzipper is to leverage redundency in temporal information in order to effectively reduce (compress) video data to it's utmost limit while at the same time preserving image definition. 
+![What's in a frame](https://medium.com/@civonamo/whats-in-a-frame-zeno-s-paradox-video-compression-and-neural-networks-20c941376142)? In 450 B.C. the ancient Greek philosopher Zeno contemplated the nature of time and its infinite divisibility, is motion any different he wondered? Like motion, videos persist through time meaning that ontop of the regular 3 dimensions necessary to describe any image i.e. (HEIGHT, WIDTH, CHANNELS), videos require an additional 4th dimension i.e. (TIME, HEIGHT, WIDTH, CHANNELS). The aim of deepzipper is to leverage redundency in color, spatial and temporal information in order to effectively reduce (compress) video data to it's utmost limit while at the same time preserving image definition. 
 
 Video compression consists of two sub-tasks:
 
@@ -39,7 +39,7 @@ The model works as follows:
 
 ## Frame interpolation
 
-There are two different methods of frame interpolation:
+There are two different methods of frame interpolation implemented in FrameInterp.py:
 
 - Reconstruction which attemps to construct the original image from scratch
 
@@ -53,6 +53,7 @@ The first models of this type which I've experimented with is the [Convolutional
 
 ## Colorization
 
+- Colorization models are implemented in both ConvNet_Rec.py and ConvNet_Res.py.
 ![](https://github.com/jomanovic/deepzipper/blob/master/display/color.jpg)
 
 ### Prerequisites
