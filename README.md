@@ -12,7 +12,7 @@
 
 ## Description
 
-[What's in a frame](https://medium.com/@civonamo/whats-in-a-frame-zeno-s-paradox-video-compression-and-neural-networks-20c941376142)? In 450 B.C. the ancient Greek philosopher Zeno contemplated the nature of time and its infinite divisibility, is motion any different he wondered? Like motion, videos persist through time meaning that ontop of the regular 3 dimensions necessary to describe any image i.e. (HEIGHT, WIDTH, CHANNELS), videos require an additional 4th dimension i.e. (TIME, HEIGHT, WIDTH, CHANNELS). The aim of deepzipper is to leverage redundency in color, spatial and temporal information in order to effectively reduce (compress) video data to it's utmost limit while at the same time preserving image definition. 
+[What's in a frame](https://medium.com/@civonamo/https-medium-com-civonamo-whats-in-a-frame-20c941376142)? In 450 B.C. the ancient Greek philosopher Zeno contemplated the nature of time and its infinite divisibility, is motion any different he wondered? Like motion, videos persist through time meaning that ontop of the regular 3 dimensions necessary to describe any image i.e. (HEIGHT, WIDTH, CHANNELS), videos require an additional 4th dimension i.e. (TIME, HEIGHT, WIDTH, CHANNELS). The aim of deepzipper is to leverage redundency in color, spatial and temporal information in order to effectively reduce (compress) video data to it's utmost limit while at the same time preserving image definition. 
 
 Video compression consists of two sub-tasks:
 
